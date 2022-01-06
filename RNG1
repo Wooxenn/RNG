@@ -1,0 +1,34 @@
+import sys
+import xchacha
+import hashlib
+import random
+
+class TRNG():
+    
+    def __init__(self, verbosity = 0):
+        self.verbosity = verbosity
+        self.key    = [0x00] * 32
+        self.iv     = [0x00] * 8
+        self.rounds = 24
+        self.mixer  = hashlib.sha512()
+        self.csprng = xchacha.XChaCha(self.rounds, self.verbosity)
+        
+        if self.verbosity > 0:
+            print("TRNG started...")
+            print("")
+
+
+def main():
+    print("Running the Cryptech TRNG model.")
+    print("--------------------------------")
+    print("")
+
+    my_trng = TRNG(verbosity = 1)
+
+    print("TRNG model done.")
+    print("")
+
+
+
+if __name__=="__main__": 
+    sys.exit(main())
